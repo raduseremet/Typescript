@@ -1,3 +1,4 @@
+"use strict";
 var user = {
     name: 'Maximilian',
     age: 27,
