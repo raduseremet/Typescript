@@ -17,12 +17,16 @@ var __extends = (this && this.__extends) || (function () {
 var Department = /** @class */ (function () {
     function Department(name) {
         this.name = name;
+        this.arr = ['text', 20];
     }
     Department.prototype.ptintCompanyName = function () {
         console.log('Readcast', this.name);
     };
-    Department.prototype.consoleLog = function () {
+    Department.prototype.protectedMethod = function () {
         console.log(this.name + " some textasdfas");
+    };
+    Department.prototype.newArr = function (imput) {
+        this.arr.push(imput);
     };
     return Department;
 }());
@@ -35,7 +39,10 @@ var Sales = /** @class */ (function (_super) {
         return _this;
     }
     Sales.prototype.print = function () {
-        console.log(consoleLog);
+        console.log(this.protectedMethod);
+    };
+    Sales.prototype.abstractMethod = function () {
+        console.log('Abstract method, se declara in clasa parinte si si este obligatorie pentru restul claselor');
     };
     return Sales;
 }(Department));
@@ -47,8 +54,12 @@ var It = /** @class */ (function (_super) {
         _this.members = members;
         return _this;
     }
+    It.prototype.abstractMethod = function () {
+        console.log('Abstract method, se declara in clasa parinte si si este obligatorie pentru restul claselor');
+    };
     return It;
 }(Department));
-var department = new Department('Departament');
 var itDepartment = new It('IT Departament', 10, true);
-var salesDpartment = new Sales('Sales Departament', 10, true);
+var salesDepartment = new Sales('Sales Departament', 10, true);
+console.log(salesDepartment);
+console.log(itDepartment);

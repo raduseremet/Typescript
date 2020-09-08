@@ -3,7 +3,9 @@
 // protected - in clasa in care a fost declarat si in clasele mostenitoare
 
 
-class Department  {
+abstract class Department  {
+
+    arr: (string|number)[] = ['text', 20];
 
     constructor(public name:string){
 
@@ -12,9 +14,13 @@ class Department  {
     ptintCompanyName(){
         console.log('Readcast',this.name);
     }
-    protected consoleLog() {
+    protected protectedMethod() {
         console.log(`${this.name} some textasdfas`);
     }
+    newArr(imput: string |number){
+        this.arr.push(imput)
+    }
+    abstract abstractMethod(this: Department):void;
 
 
 }
@@ -30,10 +36,11 @@ class Sales extends Department {
         this.manager = manager;
     }
     print(){
-        console.log(consoleLog);
+        console.log(this.protectedMethod);
     }
-
-
+    abstractMethod(){
+        console.log('Abstract method, se declara in clasa parinte si si este obligatorie pentru restul claselor');
+    }
 
 }
 
@@ -48,10 +55,16 @@ class It extends Department {
         this.admin = admin;
         this.members = members
     }
+    abstractMethod(){
+        console.log('Abstract method, se declara in clasa parinte si si este obligatorie pentru restul claselor');
+    }
 
 }
 
 
-const department = new Department('Departament');
 const itDepartment = new It ('IT Departament', 10, true);
-const salesDpartment = new Sales ('Sales Departament', 10, true);
+const salesDepartment = new Sales ('Sales Departament', 10, true);
+
+
+console.log(salesDepartment);
+console.log(itDepartment);
