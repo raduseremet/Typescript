@@ -1,3 +1,4 @@
+"use strict";
 // public - cimpul cu proprietatea public poate fi folosit oriunde
 // privat - doar in cadrul unei clase
 // protected - in clasa in care a fost declarat si in clasele mostenitoare
