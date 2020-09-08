@@ -5,13 +5,38 @@
 
 class Department  {
 
-    constructor(public name:string ){
+    constructor(public name:string){
+
     }
+
     ptintCompanyName(){
         console.log('Readcast',this.name);
     }
+    protected consoleLog() {
+        console.log(`${this.name} some textasdfas`);
+    }
+
 
 }
+
+
+class Sales extends Department {
+    members: number
+    manager: boolean
+
+    constructor(name:string, members: number, manager:boolean) {
+        super(name);
+        this.members =  members;
+        this.manager = manager;
+    }
+    print(){
+        console.log(consoleLog);
+    }
+
+
+
+}
+
 
 
 class It extends Department {
@@ -26,23 +51,7 @@ class It extends Department {
 
 }
 
-class Sales extends Department {
-    members: number
-    manager: boolean
-
-    constructor(name:string, members: number, manager:boolean) {
-        super(name);
-        this.members =  members;
-        this.manager = manager;
-    }
-
-}
-
 
 const department = new Department('Departament');
-const itDepartment = new It ('Departament', 10, true);
-const Salespartment = new Sales ('Departament', 10, true);
-
-
-
-itDepartment.ptintCompanyName()
+const itDepartment = new It ('IT Departament', 10, true);
+const salesDpartment = new Sales ('Sales Departament', 10, true);

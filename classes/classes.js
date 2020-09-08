@@ -21,8 +21,24 @@ var Department = /** @class */ (function () {
     Department.prototype.ptintCompanyName = function () {
         console.log('Readcast', this.name);
     };
+    Department.prototype.consoleLog = function () {
+        console.log(this.name + " some textasdfas");
+    };
     return Department;
 }());
+var Sales = /** @class */ (function (_super) {
+    __extends(Sales, _super);
+    function Sales(name, members, manager) {
+        var _this = _super.call(this, name) || this;
+        _this.members = members;
+        _this.manager = manager;
+        return _this;
+    }
+    Sales.prototype.print = function () {
+        console.log(consoleLog);
+    };
+    return Sales;
+}(Department));
 var It = /** @class */ (function (_super) {
     __extends(It, _super);
     function It(name, members, admin) {
@@ -33,17 +49,6 @@ var It = /** @class */ (function (_super) {
     }
     return It;
 }(Department));
-var Sales = /** @class */ (function (_super) {
-    __extends(Sales, _super);
-    function Sales(name, members, manager) {
-        var _this = _super.call(this, name) || this;
-        _this.members = members;
-        _this.manager = manager;
-        return _this;
-    }
-    return Sales;
-}(Department));
 var department = new Department('Departament');
-var itDepartment = new It('Departament', 10, true);
-var Salespartment = new Sales('Departament', 10, true);
-itDepartment.ptintCompanyName();
+var itDepartment = new It('IT Departament', 10, true);
+var salesDpartment = new Sales('Sales Departament', 10, true);
