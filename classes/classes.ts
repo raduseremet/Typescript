@@ -1,6 +1,9 @@
 // public - cimpul cu proprietatea public poate fi folosit oriunde
 // privat - doar in cadrul unei clase
 // protected - in clasa in care a fost declarat si in clasele mostenitoare
+// abstract - metodada careia este atribuita termenul abstract trebuie creata in fiecare subclasa
+// 
+// static - metodele care au in fata cuvintul static pot fi apelate fara ca clasa in care se afla sa fie initiata
 
 
 abstract class Department  {
@@ -21,7 +24,6 @@ abstract class Department  {
         this.arr.push(imput)
     }
     abstract abstractMethod(this: Department):void;
-
 
 }
 
@@ -47,6 +49,9 @@ class Sales extends Department {
 
 
 class It extends Department {
+
+    static salaryBonus = 2020;
+
     admin: boolean
     members: number
 
@@ -58,9 +63,14 @@ class It extends Department {
     abstractMethod(){
         console.log('Abstract method, se declara in clasa parinte si si este obligatorie pentru restul claselor');
     }
+    static staticKeyWord() {
+        console.log(`Bonus pentru performanta ${It.salaryBonus}`);
+    }
 
 }
 
+
+It.staticKeyWord();
 
 const itDepartment = new It ('IT Departament', 10, true);
 const salesDepartment = new Sales ('Sales Departament', 10, true);
