@@ -1,9 +1,10 @@
-// public - cimpul cu proprietatea public poate fi folosit oriunde
-// privat - doar in cadrul unei clase
-// protected - in clasa in care a fost declarat si in clasele mostenitoare
-// abstract - metodada careia este atribuita termenul abstract trebuie creata in fiecare subclasa
+// PUBLIC - cimpul cu proprietatea public poate fi folosit oriunde
+// PRIVAT - doar in cadrul unei clase
+// PROTECTED - in clasa in care a fost declarat si in clasele mostenitoare
+// ABSTRACT - metodada careia este atribuita termenul abstract trebuie creata in fiecare subclasa
 // 
-// static - metodele care au in fata cuvintul static pot fi apelate fara ca clasa in care se afla sa fie initiata
+// STATIC - metodele care au in fata cuvintul static pot fi apelate fara ca clasa in care se afla sa fie initiata
+// PRIVATE CONSTRUCTOR - nu poate fi initiat din afara clasei, poate fi initiat doar din interiorul clasei si doar odata, celelalte metode pot fi apelate doar prin atribuirea termenului static in fata si prin intermediul clasei
 
 
 abstract class Department  {
@@ -31,8 +32,9 @@ abstract class Department  {
 class Sales extends Department {
     members: number
     manager: boolean
+    static salesInstance: Sales;
 
-    constructor(name:string, members: number, manager:boolean) {
+   private constructor(name:string, members: number, manager:boolean) {
         super(name);
         this.members =  members;
         this.manager = manager;
@@ -40,8 +42,19 @@ class Sales extends Department {
     print(){
         console.log(this.protectedMethod);
     }
-    abstractMethod(){
+   abstractMethod(){
         console.log('Abstract method, se declara in clasa parinte si si este obligatorie pentru restul claselor');
+    }
+    static getSaleInstances(){
+
+        if(Sales.salesInstance){
+            return this.salesInstance
+        }
+        const salesDepartment = new Sales ('Sales Department', 21, true)
+        return salesDepartment;
+    }
+    static testMethod(){
+        console.log('some text');
     }
 
 }
@@ -51,11 +64,12 @@ class Sales extends Department {
 class It extends Department {
 
     static salaryBonus = 2020;
+    private static instance: It;
 
     admin: boolean
     members: number
 
-    constructor(name:string, members: number, admin: boolean) {
+    private constructor(name:string, members: number, admin: boolean) {
         super(name)
         this.admin = admin;
         this.members = members
@@ -64,17 +78,28 @@ class It extends Department {
         console.log('Abstract method, se declara in clasa parinte si si este obligatorie pentru restul claselor');
     }
     static staticKeyWord() {
-        console.log(`Bonus pentru performanta ${It.salaryBonus}`);
+        console.log(`metoda care are cuvintul static in fata poate fi apelata direct fara a crea o instanta, prin intermediul denumiirii clasei`);
+    }
+    static getInstance(){
+        if(It.instance){
+            this.instance
+        }
+         this.instance = new It('It Department', 20, true);
+         return this.instance
     }
 
 }
 
-
-It.staticKeyWord();
-
-const itDepartment = new It ('IT Departament', 10, true);
-const salesDepartment = new Sales ('Sales Departament', 10, true);
+// const itDepartment = new It ('IT Departament', 10, true);
+//const salesDepartment = new Sales ('Sales Departament', 10, true);
 
 
-console.log(salesDepartment);
-console.log(itDepartment);
+// console.log(It.getInstance());
+
+
+//console.log(salesDepartment);
+//console.log(itDepartment);
+
+
+const createSaleInstance = Sales.getSaleInstances();
+//console.log(createSaleInstance);
