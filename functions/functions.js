@@ -13,8 +13,7 @@ function getName(firstName, lastName) {
 }
 //console.log(getName('John'));
 //  in cazul cind surname nu este declarat by default v-a primi valoarea 'Howking'
-function fullName(name, surname) {
-    if (surname === void 0) { surname = 'Howking'; }
+function fullName(name, surname = 'Howking') {
     return name + " " + surname;
 }
 // console.log(fullName('Stephan'));
@@ -23,7 +22,7 @@ function consoleLog(fullName) {
     console.log(fullName);
 }
 //consoleLog('John Lenon')
-var calcSum2;
+let calcSum2;
 function calcSum(num1, num2) {
     return num1 + num2;
 }

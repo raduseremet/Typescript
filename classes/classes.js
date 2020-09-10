@@ -6,89 +6,69 @@
 // 
 // STATIC - metodele care au in fata cuvintul static pot fi apelate fara ca clasa in care se afla sa fie initiata
 // PRIVATE CONSTRUCTOR - nu poate fi initiat din afara clasei, poate fi initiat doar din interiorul clasei si doar odata, celelalte metode pot fi apelate doar prin atribuirea termenului static in fata si prin intermediul clasei
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var Department = /** @class */ (function () {
-    function Department(name) {
+class Department {
+    constructor(name) {
         this.name = name;
         this.arr = ['text', 20];
     }
-    Department.prototype.ptintCompanyName = function () {
+    ptintCompanyName() {
         console.log('Readcast', this.name);
-    };
-    Department.prototype.protectedMethod = function () {
-        console.log(this.name + " some textasdfas");
-    };
-    Department.prototype.newArr = function (imput) {
-        this.arr.push(imput);
-    };
-    return Department;
-}());
-var Sales = /** @class */ (function (_super) {
-    __extends(Sales, _super);
-    function Sales(name, members, manager) {
-        var _this = _super.call(this, name) || this;
-        _this.members = members;
-        _this.manager = manager;
-        return _this;
     }
-    Sales.prototype.print = function () {
+    protectedMethod() {
+        console.log(`${this.name} some textasdfas`);
+    }
+    newArr(imput) {
+        this.arr.push(imput);
+    }
+}
+class Sales extends Department {
+    constructor(name, members, manager) {
+        super(name);
+        this.members = members;
+        this.manager = manager;
+    }
+    print() {
         console.log(this.protectedMethod);
-    };
-    Sales.prototype.abstractMethod = function () {
+    }
+    abstractMethod() {
         console.log('Abstract method, se declara in clasa parinte si si este obligatorie pentru restul claselor');
-    };
-    Sales.getSaleInstances = function () {
+    }
+    static getSaleInstances() {
         if (Sales.salesInstance) {
             return this.salesInstance;
         }
-        var salesDepartment = new Sales('Sales Department', 21, true);
+        const salesDepartment = new Sales('Sales Department', 21, true);
         return salesDepartment;
-    };
-    Sales.testMethod = function () {
-        console.log('some text');
-    };
-    return Sales;
-}(Department));
-var It = /** @class */ (function (_super) {
-    __extends(It, _super);
-    function It(name, members, admin) {
-        var _this = _super.call(this, name) || this;
-        _this.admin = admin;
-        _this.members = members;
-        return _this;
     }
-    It.prototype.abstractMethod = function () {
+    static testMethod() {
+        console.log('some text');
+    }
+}
+class It extends Department {
+    constructor(name, members, admin) {
+        super(name);
+        this.admin = admin;
+        this.members = members;
+    }
+    abstractMethod() {
         console.log('Abstract method, se declara in clasa parinte si si este obligatorie pentru restul claselor');
-    };
-    It.staticKeyWord = function () {
-        console.log("metoda care are cuvintul static in fata poate fi apelata direct fara a crea o instanta, prin intermediul denumiirii clasei");
-    };
-    It.getInstance = function () {
+    }
+    static staticKeyWord() {
+        console.log(`metoda care are cuvintul static in fata poate fi apelata direct fara a crea o instanta, prin intermediul denumiirii clasei`);
+    }
+    static getInstance() {
         if (It.instance) {
             this.instance;
         }
         this.instance = new It('It Department', 20, true);
         return this.instance;
-    };
-    It.salaryBonus = 2020;
-    return It;
-}(Department));
+    }
+}
+It.salaryBonus = 2020;
 // const itDepartment = new It ('IT Departament', 10, true);
 //const salesDepartment = new Sales ('Sales Departament', 10, true);
 // console.log(It.getInstance());
 //console.log(salesDepartment);
 //console.log(itDepartment);
-var createSaleInstance = Sales.getSaleInstances();
+const saleInstance = Sales.getSaleInstances();
 //console.log(createSaleInstance);

@@ -56,9 +56,7 @@ class Sales extends Department {
     static testMethod(){
         console.log('some text');
     }
-
 }
-
 
 
 class It extends Department {
@@ -101,5 +99,7 @@ class It extends Department {
 //console.log(itDepartment);
 
 
-const createSaleInstance = Sales.getSaleInstances();
+const saleInstance = Sales.getSaleInstances();
 //console.log(createSaleInstance);
+
+
